@@ -1,0 +1,24 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <% array.forEach(function(item) { %>
+                
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box <%= item.class %>">
+                        
+                        <div class="inner">
+                            <h3><%= item.count %></h3>
+                            <p><%= item.title %></p>
+                        </div>
+                        
+                        <div class="icon">
+                            <i class="<%= item.icon %>"></i>
+                        </div>
+                        <a href="<%= item.route %>" class="small-box-footer">View <%= item.title %> <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <% }); %> 
+            </div>
+        </section>
+        

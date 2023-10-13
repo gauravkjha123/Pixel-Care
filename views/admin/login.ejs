@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pixel Care | login</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/css/adminlte.min.css?v=3.2.0">
+    <style>
+        .error-message{
+            color:red
+        }
+    </style>
+     <%- include("../header") %>
+</head>
+    <body class="hold-transition login-page">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="#"><b>Pixel</b>Care</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">Sign in to start your session</p>
+                    <div class="alert alert-danger error-box" style="display: none;">
+                        <b>Wrong credential! Please try again.</b> 
+                    </div> 
+                    <!-- <form method="post" action="/login" id="loginForm"> -->
+                        <form method="post" id="loginForm">
+                            <label>&nbsp;Username </label><br>
+                            <div class="input-group ">
+                                <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter username">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fa-solid fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-1" >
+                                <span id="user_name-error" class="error-message"></span>
+                            </div>
+                            <label>&nbsp;Password </label><br>
+                            <div class="input-group ">
+                                <input type="password" name="password" id="pass" class="form-control" placeholder="Enter Password">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-1">
+                                <span id="password-error" class="error-message temp"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" id="login" class="btn btn-primary btn-block">Sign In</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script src="/plugins/jquery/jquery.min.js"></script>
+            <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="/js/adminlte.min.js?v=3.2.0"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <script>
+                toastr.options.timeOut = 2500;
+                toastr.options.closeButton = true;
+            </script>
+            <script type="text/javascript" src="/plugins/jquery-validation/jquery.validate.min.js"></script>
+            <script type="text/javascript" src="/plugins/jquery-validation/additional-methods.min.js"></script>
+            <script src="/js/myjs/login.js"></script>
+        </body>
+        </html>
+        

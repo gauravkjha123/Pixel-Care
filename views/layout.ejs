@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./header") %>
+        <style>
+            .load-gif {
+                position: absolute;
+                top: 68%;
+                left: 39%;
+                z-index: +100 !important;
+            }
+        </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto dashboard_li_a">
+                <li class="nav-item dropdown">
+                    <a href="/logout"><button type="button" class="btn btn-block btn-md text-dark logout"><i
+                                style="font-size: 25px;" class="fas fa-sign-out-alt"></i></button></a>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <!-- @include('layouts.sidebar') -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pixel Care</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview"
+                        role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <% if (data.url=='/admin/dashboard' ) { %>
+                                <a href="/admin/dashboard" class="nav-link active">
+                                    <%} else { %>
+                                        <a href="/admin/dashboard" class="nav-link">
+                                            <% } %>
+                                                <i class="nav-icon fas fa-d"></i>
+                                                <p>Dashboard</p>
+                                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <% if (data.url=='/profile' ) { %>
+                                <a href="/admin/profile" class="nav-link active">
+                                    <%} else { %>
+                                        <a href="/admin/profile" class="nav-link">
+                                            <% } %>
+                                                <i class="nav-icon fas fa-person"></i>
+                                                <p>Profile</p>
+                                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <% if (data.url=='/users' ) { %>
+                                <a href="/admin/users" class="nav-link active">
+                                    <%} else { %>
+                                        <a href="/admin/users" class="nav-link">
+                                            <% } %>
+                                                <i class="nav-icon fas fa-user"></i>
+                                                <p>Users</p>
+                                        </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <% if (data.url=='/contacts' ) { %>
+                                <a href="/admin/contacts" class="nav-link active">
+                                    <%} else { %>
+                                        <a href="/admin/contacts" class="nav-link">
+                                            <% } %>
+                                                <i class="nav-icon fa-solid fa-phone"></i>
+                                                <p>Contact us</p>
+                                        </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">
+                                <%= title %>
+                            </h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <%- body %>
+                <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2022-2023 <a href="javascript:void(0)">Pixel Care</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- @include('layouts.footer') -->
+    <%- include("./footer") %>
+
+</body>
+<script>
+    $(document).on('click', '.logout', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure want to logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value == true) {
+                $.ajax({
+                    type: "get",
+                    url: "/logout",
+                    success: function (response) {
+                        window.location.replace("/")
+                    }
+                });
+            } else {
+                e.preventDefault();
+            }
+        });
+    })
+</script>
+
+</html>

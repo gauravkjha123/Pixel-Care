@@ -1,0 +1,209 @@
+<style>
+    .error {
+        color: white;
+    }
+</style>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title p-2">All Users</h3>
+                        <div class="text-right">
+                            <a href="javascript:void(0)" type="button" class="btn btn-dark refresh">Refresh</a>
+                            <a href="javascript:void(0)" type="button" class="btn btn-success create">Add User</a>
+                        </div>
+                    </div>
+                    <form method="post" id="frm-example">
+                        <div class="card-body">
+                            <table class="table data-table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <button type="submit" class="btn btn-danger" id="multiple_delete_btn" disabled>Delete
+                                selected <span style="display: none" id="multiple_user_delete_loader"><i
+                                        class="fa fa-spinner fa-spin" aria-hidden="true"></i></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="add_edit_modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="user_modal_title"></h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- <form method="post" name="add_edit_form" id="add_edit_form" enctype="multipart/form-data"> -->
+                <form method="post" name="add_edit_form" id="add_edit_form" enctype="multipart/form-data">
+                    <img src="#" width="50px" height="50px" style="display: none" class="load" onerror="this.src='/images/userNotFound.jpg';" >
+                    <!-- <input type="hidden" name="store_id" id="str_id"> -->
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <input type="hidden" name="id" id="id" value="">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="first_name" class="col-form-label">First Name: <span
+                                            class="required">*</span></label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                        placeholder="Enter first name">
+                                        <div class="mt-2">
+                                            <span id="first_name-error"
+                                            class="error-message temp"></span>
+                                        </div>
+                    
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="last_name" class="col-form-label">Last Name: </span></label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                        placeholder="Enter last name">
+                                        <div class="mt-2">
+                                            <span id="last_name-error"
+                                            class="error-message temp"></span>
+                                        </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="user_name" class="col-form-label">Username: <span class="required">*</span>
+                                        </label>
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                        placeholder="Enter username">
+                                        <div class="mt-2">
+                                            <span id="user_name-error" class="error-message temp"></span>
+                                        </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="phone_number" class="col-form-label">Phone Number: <span class="required">*</span>
+                                       </label>
+                                    <input type="number"  class="form-control" id="phone_number" name="phone_number"
+                                        placeholder="Enter phone number">
+                                        <div class="mt-2">
+                                            <span id="phone_number-error" class="error-message temp"></span>
+                                        </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="department" class="col-form-label">Department: </span>
+                                       </label>
+                                    <input type="text" class="form-control" id="department" name="department"
+                                        placeholder="Enter department">
+                                        <div class="mt-2">
+                                            <span id="department-error" class="error-message temp"></span>
+                                        </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="password" class="col-form-label">Password: <span class="required"
+                                            id="password_red">*</span> </label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Enter password">
+                                        <div class="mt-2">
+                                            <span id="password-error"
+                                            class="error-message temp"></span>
+                                        </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password_confirmation" class="col-form-label">Confirm Password: <span
+                                            class="required" id="confirm_password_red">*</span> </span></label>
+                                    <input type="password" class="form-control" id="password_confirmation"
+                                        name="password_confirmation" placeholder="Enter confirm password">
+                                        <div class="mt-2">
+                                            <span
+                                            id="password_confirmation-error" class="error-message temp">
+                                        </div>
+                                </div>
+                                <div class="col-12 row">
+                                    <div class="form-group col-md-6">
+                                        <label for="recipient-name" class="col-form-label">Image:</label>
+                                        <input type="file" name="image" id="image" class="form-control p-1"
+                                            placeholder="Enter Select Image">
+                                            <div class="mt-2">
+                                                <span
+                                            id="image-error" class="error-message temp"></span>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <img src="" alt="pic" id="image-show" width="70px" height="70px"
+                                               class="rounded-circle" onerror="this.src='/images/userNotFound.jpg';"  >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-secondary float-left"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="save"><span style="display: none"
+                                id="loader"><i class="fa fa-spinner fa-spin"></i></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade view-user" id="view_user_modal">
+        <div class="modal-dialog modal-l">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 7px 20px;">
+                    <h4 class="modal-title" id="user_modal_title">View User</h4>
+                    <button type="button" class="close " data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding:0.5rem;">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="rounded-circle" height="70px" width="70px" id="view_image_preview" src=""
+                                    alt="User Image" onerror="this.src='/images/userNotFound.jpg';" >
+                            </div>
+                            <h3 class="profile-username text-center" id="user_name"></h3>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Username</b> <span class="float-right" id="view_user_name">-</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Joined On</b> <span class="float-right" id="view_created_at">-</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Status</b> <span class="float-right" id="view_status">-</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Department</b> <span class="float-right" id="view_department">-</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Phone No:</b> <span class="float-right" id="view_phone_number">-</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
